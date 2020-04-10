@@ -1,0 +1,27 @@
+This is a Python library around a unix utility called expect ,
+but since expect has its own dedicated syntax, we believe that skipping it and going straight for the Python wrapper is a
+mentally healthier approach.
+To use pexpect , like any other python library, we first have to install it via pip and then import it. We can then create a new process by p = pexpect.spawn(cmd) , which is very convenient because cmd can be, let’s say, nc <some_server> <some_port> ,and pexpect will seamlessly interact with the remote server just like it would with a local process. One way or the other, once 29the spawn call goes through, the variable p refers to a ”process” object. The three main methods supported by that object are:
+
+• setecho – Sets whether input sent to the process will be echoed to the terminal or not. Takes one parameter of either
+True or False .
+
+• expect – Takes a list of strings as a parameter (regular expressions are also supported, if that helps). This method
+lets the process run until its output contains at least one of the strings, and then returns the index of that string in the
+list. For instance, if the command p.expect(["hello", "goodbye"]) is issued and the process prints hello world!
+then the call to expect will return 0. Some built-in constants are also supported in addition to the strings: for example,
+pexpect.EOF will trigger if there is no more process output and none of the other strings were found.
+
+• send – takes a string and passes that string as input to the spawned program. To add an automatic line feed at the end
+of the input (as a human typically would), use sendline instead.
+To actually examine spawned program output and react accordingly, familiarity is required with these two fields of the
+”process” object:
+
+• p.before – holds a slice of the spawned program output, starting with the last character of the previous expect match
+up until the first character of the current expect match, not inclusive.
+
+• p.after – holds the contents of the current expect match.
+For example, if the spawned program outputs ”lorem ipsum dolor sit amet” and we call p.expect("ipsum") and then
+p.expect("sit") , then p.before will hold "dolor " and p.after will hold "amet" . You can do some of your own ex-
+perimentation by calling pexpect.spawn("echo <choose some wacky text here>") and then trying various combinations
+of p.expect(...) , p.before and p.after to see how pexpect ’s internal states behave and what output is generated.
