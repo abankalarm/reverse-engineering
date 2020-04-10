@@ -16,3 +16,13 @@ This writes the password to the file pass . Run col with the contents of pass as
 
 
 -m32 to complile woth 32 bit lobraries
+
+
+The stack is divided into ”frames”, starting at the top of the stack. Each frame is associated with a function. The top
+frame is associated with the function currently executing, f 0 . The frame below it is associated with f 1 , the function that
+called f 0 . The frame below that is associated with f 2 , the function that called f 1 . And so on.
+• esp has the address of the top of the current stack frame (that’s the top of the stack in general); ebp has the address
+of the bottom of the current stack frame.
+• From the top of the current stack frame going down, we have: a space for local variables; a backup of the ebp value for
+f 1 ; a backup of where to resume execution in f 1 once f 0 returns; the arguments that f 1 supplied to f 0 , in the order that
+they appear in f 0 ’s signature.
