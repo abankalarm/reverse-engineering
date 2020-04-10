@@ -10,3 +10,9 @@ compose our crafted password in hexadecimal:
 And issue the command: xxd -r pass.hex > pass
 This writes the password to the file pass . Run col with the contents of pass as the first parameter:
 18./col ‘cat pass‘
+
+
+
+
+
+-m32 to complile woth 32 bit lobraries
