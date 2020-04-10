@@ -1,0 +1,12 @@
+<H2>we need to 20  bytes of password that is equal to a hexcode</h2>
+
+Let’s try something banal: a = b = c = d = 0x41414141 . We then use Python to compute:
+e = (0x21DD09EC - 4*0x41414141)% 2**32
+This returns the number 483919080 , or 0x1cd804e8 in hexadecimal (we can ask Python to compute this for us by issuing
+the command hex(e) ). We got lucky on our first try: the resulting value of e does not contain any problematic bytes. We now
+compose our crafted password in hexadecimal:
+00: 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41
+10: e8 04 d8 1c
+And issue the command: xxd -r pass.hex > pass
+This writes the password to the file pass . Run col with the contents of pass as the first parameter:
+18./col ‘cat pass‘
