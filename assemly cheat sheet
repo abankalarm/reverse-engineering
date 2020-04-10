@@ -1,0 +1,46 @@
+register                                  what it’s for                          often seen
+`````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+eax                                       general purpose              carrying function return values
+ebx                                       general purpose              storing values when eax is already taken
+ecx                                       general purpose              doing the counting for a for loop
+edx                                       general purpose              joining with eax to store 64-bit numbers
+esi                                       general purpose              holding an address to copy bytes from
+edi                                       general purpose              holding an address to copy bytes to
+esp                                       stack pointer                holding the address of the stack frame top
+ebp                                       frame/base pointer           holding the address of the stack frame bottom
+eip                                       instruction pointer          holding the address of the current instruction
+flags                                     flags                        keeping results of comparisons
+
+
+Table of choice x86 registers
+
+instruction       english                      example                  english
+```````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````                                                                        
+mov               move                   mov eax, ebx           copy the value in ebx into eax
+inc               increment              inc ecx               increase the value of ecx by 1
+dec               decrement              dec ecx              decrease the value of ecx by 1
+cmp               compare                cmp eax, ecx          compare eax with ecx and remember which is larger
+add               add                    add eax, ecx              add the values of eax and ecx then put the result in eax
+sub               subtract               sub eax, ecx                subtract the value of ecx from that of eax , and then           
+                                                                      put the result in eax
+mul               multiply                  mul ebx                   multiply the value of eax by the value of ebx , and 
+                                                                  then put the 64-bit result in edx (significant 32 bits) and
+                                                                    eax (remaining 32 bits)
+div               divide                      div ebx                  treat edx as 32 significant bits, eax as 32 remaining 
+                                                                     bits;
+                                                                    divide result by the value of ebx ; put the quotient in 
+                                                                    eax and the remainder in edx (phew!)
+and               and                     and eax, edx               compute the bitwise and of eax and ecx ; put the result 
+                                                                     in eax
+xor               exclusive or             xor eax, ecx             compute the bitwise exclusive-or of eax and ecx ; put the
+                                                                    result in eax
+lea               load effective address  lea edx, [eax+4]          move the address of the second operand to the first     
+                                                                    operand;puts eax+4 into edx .
+jmp               jump                    jmp 0x401000              transfer control flow to the address 0x401000
+jge               jump if greater or equal   jge 0x401000           same as jmp , but only if in last comparison, first term 
+                                                                     was greater or equal
+push               push                   push ebx                    push the value in ebx on top of the stack
+pop               pop                     pop ebx                   pop a value off the top of the stack and put it in ebx
+call              call                  call 0x401000                 push address of next instruction to the stack, transfer 
+                                                                      control to 0x401000
+ret             return                          ret                    pop address off the stack, transfer control there
