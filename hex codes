@@ -1,4 +1,4 @@
-<H2>we need to 20  bytes of password that is equal to a hexcode</h2>
+<h2>we need to 20  bytes of password that is equal to a hexcode</h2>
 
 Let’s try something banal: a = b = c = d = 0x41414141 . We then use Python to compute:
 e = (0x21DD09EC - 4*0x41414141)% 2**32
