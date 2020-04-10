@@ -26,3 +26,10 @@ of the bottom of the current stack frame.
 • From the top of the current stack frame going down, we have: a space for local variables; a backup of the ebp value for
 f 1 ; a backup of where to resume execution in f 1 once f 0 returns; the arguments that f 1 supplied to f 0 , in the order that
 they appear in f 0 ’s signature.
+
+
+
+The debugger we’re going to be using is called gdb . Edit the text file ~/.gdbinit
+(if it doesn’t exist, create it) and add the following lines to it:
+set disassembly-flavor intel
+layout regs
