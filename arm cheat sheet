@@ -1,0 +1,22 @@
+name
+r0 - r10
+purpose
+general purpose
+r11 ( fp ) frame pointer (roughly analogous to ebp )
+r12 ( ip ) inter procedural call
+r13 ( sp ) analogous to esp
+r14 ( lr ) link register, stores where to return from functions
+r15 ( pc ) program counter, analogous to eip
+cpsr
+program status, roughly analogous to flags register
+Figure 17: ARM registers
+52x86
+ARM
+jmp                     B (branch)
+call                    BL (branch with link; copies address of following instruction tolr )
+add reg1, reg2
+add reg3, reg1, reg2 (does not modify reg1 or reg2 ;puts result in reg3 . To get exact same effect as x86 example:
+add reg1, reg1, reg2 )
+
+push eip ; push ebp                      push {r11, lr} ( lr is pushed first, then r11 )
+
